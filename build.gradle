@@ -2,7 +2,7 @@ buildscript {
     ext {
         queryDslVersion = "5.0.0"
     }
-} /*쿼리 dsl 추가 설정 : p.448*/
+} /* 쿼리dsl 추가 설정 : p448쪽 */
 
 plugins {
     id 'java'
@@ -32,11 +32,8 @@ repositories {
 dependencies {
     /* 메이븐 리포지토리에서 코드를 가져와 코끼리를 누르면 가져온다. */
 
-    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation
-    implementation 'org.springframework.boot:spring-boot-starter-validation:3.4.7'
-
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' /* 프론트 관련 */
-    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.1.0' /* 프론트 레이아웃 관련 */
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.1.0' /* 프론트 레이아웃 관련*/
 
     implementation 'org.springframework.boot:spring-boot-starter-web'       /* string-web */
     compileOnly 'org.projectlombok:lombok'                                  /* 롬북 */
@@ -44,11 +41,11 @@ dependencies {
     testCompileOnly 'org.projectlombok:lombok'                              /* 롬북 */
     testAnnotationProcessor 'org.projectlombok:lombok'                      /* 롬북 */
 
-    /*DTO와 엔티티간에 변환 처리용 p.460*/
+    /* DTO와 엔티티 간에 변환 처리용 P460 */
     // https://mvnrepository.com/artifact/org.modelmapper/modelmapper
     implementation 'org.modelmapper:modelmapper:3.1.0'
-    /*과거에는 엔티티를 DTO로 변환 또는 DTO를 엔티티로 변환 해야 사용 가능함*/
-    /*프로젝트에 config라는 환경설정용 패키지를 만들고 RootConfih 클래스를 만들어 사용한다.*/
+    /* 과거에는 엔티티를 DTO로 변환 또는 DTO를 엔티티로 변환 해야 사용해야 함 */
+    /* 프로젝트에 config라는 환경설정용 패키지를 만들고 RootConfig 클래스를 만들어 사용한다. */
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'         /* boot 개발용 */
 
@@ -56,10 +53,11 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'  /* 데이터 베이스 관련*/
     runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'                      /* 마리아 db 드라이버 */
 
+    implementation 'org.springframework.boot:spring-boot-starter-validation' /* p487 추가 서버에서 검증용 */
     testImplementation 'org.springframework.boot:spring-boot-starter-test'  /* 테스트 junit 메서드 단위 테스트 */
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'            /* junit용 코드 */
 
-    /*쿼리 dsl 문구 추가 p.448 (6개 행 추가)*/
+    /* 쿼리dsl 문구 추가 p448쪽 6개행 추가 */
     implementation "com.querydsl:querydsl-jpa:${queryDslVersion}:jakarta"
 
     annotationProcessor(
@@ -73,7 +71,7 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-/*쿼리 dsl 문구 추가 ㅔ.448 (8개 행 추가)*/
+/* 쿼리dsl 문구 추가 p448쪽 8개행 추가 */
 sourceSets {
 
     main {
@@ -82,13 +80,12 @@ sourceSets {
         }
     }
 }
-/*쿼리 dsl사용법 -> 오른쪽에 있는 Gradle메뉴를 열고 other를 찾아서 conplieJava task 실행*/
-/*하단에 complie가 된다.
--> 왼쪽 탐색기 -> build -> generated -> main -> domain -> Q로 시작하는 클래스
-쿼리 dsl용 객체로 우리가 커스텀 하면 안됨
-*주의사항*
-Entity나 dto를 건들면 Q도메인을 다시 생성해야 한다.
-삭제 방법 : 오른쪽 Gradle메뉴 -> Tasks -> build -> clean 후 재생성
+/* 쿼리 dsl 사용법 -> 오른쪽에 있는 Gradle 메뉴를 열고 task-> other를 찾아서 complieJava 실행*/
+/* 하단에 complie가 된다.
+-> 왼쪽 탐색기 -> build-> generated -> main -> domain -> Q로 시작하는 클래스
+쿼리dsl용 객체로 우리가 커스텀 하면 안됨!!!!
+******** 주의사항 : 엔티티나 dto를 건딜면 Q도메인을 다시 생성해야 한다.***********
+삭제 방법 -> 오른쪽 Gradle 메뉴 -> Tasks->build->clean 후 재생성
 */
 
 compileJava.dependsOn('clean')
