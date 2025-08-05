@@ -31,9 +31,20 @@ repositories {
 
 dependencies {
     /* 메이븐 리포지토리에서 코드를 가져와 코끼리를 누르면 가져온다. */
+    // 스프링 시큐리티 추가 : 로그인 처리용 p678 https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
+    implementation("org.springframework.boot:spring-boot-starter-security:3.4.7")
+
+    // 스프링 시큐리티6+타입리프 https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity6
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.1.RELEASE'
+
+    // 카카오로그인 oauth2 추가
+    // https://mvnrepository.com/artifact/org.springframework.security/spring-security-oauth2-client
+    implementation 'org.springframework.security:spring-security-oauth2-client'
 
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' /* 프론트 관련 */
     implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.1.0' /* 프론트 레이아웃 관련*/
+    // https://mvnrepository.com/artifact/net.coobird/thumbnailator
+    implementation("net.coobird:thumbnailator:0.4.16")                      /* 파일 섬네일 처리용 p603 */
 
     implementation 'org.springframework.boot:spring-boot-starter-web'       /* string-web */
     compileOnly 'org.projectlombok:lombok'                                  /* 롬북 */
